@@ -1,0 +1,43 @@
+﻿@page
+@model SupermarketWEB.Pages.Products.IndexModel
+@{
+    ViewData["Title"] = "Products";  // Título de la página
+}
+
+<h1 class="mb-4">Products List</h1>  <!-- Encabezado principal con margen  -->
+
+<!-- Botón para crear nuevo producto -->
+<div class="mb-3">
+    <a asp-page="Create" class="btn btn-success btn-sm">
+        Create New Product
+    </a>
+</div>
+
+<!--Tabla de productos -->
+<table class="table table-bordered">  <!-- Tabla con bordes  -->
+    <thead class="table-light">  
+        <tr>
+            <th>Name</th>  <!-- Columnas del encabezado -->
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Category</th>
+            <th>Actions</th>  <!-- Columna para acciones -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Products)  
+        {
+            <tr>
+                <td>@item.Name</td>  <!-- Datos del producto -->
+                <td>$@item.Price</td>
+                <td>@item.Stock</td>
+                <td>@item.CategoryId</td>
+                <td>
+                    <!-- Botones de acciones -->
+                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
