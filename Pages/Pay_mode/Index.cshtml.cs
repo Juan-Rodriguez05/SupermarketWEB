@@ -15,13 +15,13 @@ namespace SupermarketWEB.Pages.PayModes
             _context = context;
         }
 
-        public IList<PayMode> Pay_mode { get; set; } = default!;
+        public IList<PayMode> PayModes { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Pay_mode != null)
+            if (_context.PayModes != null)
             {
-                Pay_mode = await _context.Pay_mode.ToListAsync();
+                PayModes = await _context.PayModes.ToListAsync();
             }
         }
     }
