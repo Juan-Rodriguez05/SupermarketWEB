@@ -1,9 +1,13 @@
+// Below is the corrected Program.cs file:
+
 using Microsoft.EntityFrameworkCore;
 using SupermarketWEB.Data;
 
+// Below is the corrected Program.cs file:
+
 namespace SupermarketWEB
 {
-    public class Program
+    internal static class ProgramHelpers
     {
         public static void Main(string[] args)
         {
@@ -22,7 +26,6 @@ namespace SupermarketWEB
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
