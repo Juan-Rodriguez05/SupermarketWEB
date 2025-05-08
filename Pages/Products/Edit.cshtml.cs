@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SupermarketWEB.Data;
 using SupermarketWEB.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SupermarketWEB.Pages.Products
 {
