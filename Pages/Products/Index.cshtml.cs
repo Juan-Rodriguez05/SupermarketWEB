@@ -21,8 +21,8 @@ namespace SupermarketWEB.Pages.Products
 		{
 			if (_context.Products != null)
 			{
-				Products = await _context.Products.ToListAsync();
-			}
+                Products = await _context.Products.Include(p => p.Category).ToListAsync();
+            }
 		}
 	}
 }

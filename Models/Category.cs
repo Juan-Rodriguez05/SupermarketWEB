@@ -9,6 +9,7 @@ namespace SupermarketWEB.Models
 
         public string? Description { get; set; }
 
-        public ICollection<Product>? Products { get; set; } = default!;
+        public ICollection<Product>? Products { get; set; } = new List<Product>();
+
     }
 }
