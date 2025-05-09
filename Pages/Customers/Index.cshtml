@@ -1,4 +1,62 @@
 ﻿@page
 @model SupermarketWEB.Pages.Customers.IndexModel
 @{
+    ViewData["Title"] = "Customers";
 }
+
+<div class="container mt-4">
+    <h1 class="mb-4 text-primary">Customer</h1>
+    <p>
+        <a asp-page="Create" class="btn btn-success btn-sm">Create New Customer</a>
+    </p>
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="table-ligth text-center">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Customers[0].Id)</th>
+                <th>@Html.DisplayNameFor(model => model.Customers[0].First_name)</th>
+                <th>@Html.DisplayNameFor(model => model.Customers[0].Last_name)</th>
+                <th>@Html.DisplayNameFor(model => model.Customers[0].Address)</th>
+                <th>@Html.DisplayNameFor(model => model.Customers[0].Birthday)</th>
+                <th>@Html.DisplayNameFor(model => model.Customers[0].Phone_number)</th>
+                <th>@Html.DisplayNameFor(model => model.Customers[0].Email)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Customers)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.First_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Last_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @item.Birthday?.ToString("dd/MM/yyyy"))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone_number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+
+                    <td>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
