@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 using SupermarketWEB.Data;
 using SupermarketWEB.Models;
 
-namespace SupermarketWEB.Pages.PayModes
+namespace SupermarketWEB.Pages.Customers
 {
     public class DeleteModel : PageModel
     {
@@ -15,41 +14,42 @@ namespace SupermarketWEB.Pages.PayModes
         {
             _context = context;
         }
+
         [BindProperty]
-        public PayMode PayMode { get; set; } = default!;
+
+        public Customer Customer { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.PayModes == null)
+            if (id == null || _context.Customers == null)
             {
                 return NotFound();
             }
 
-            var payMode = await _context.PayModes.FirstOrDefaultAsync(m => m.Id == id);
-            if (payMode == null)
+            var customer = await _context.Customers.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (customer == null)
             {
                 return NotFound();
             }
             else
             {
-                PayMode = payMode;
-                return Page();
+                Customer = customer;
             }
+            return Page();
         }
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.PayModes == null)
+            if (id == null || _context.Customers == null)
             {
                 return NotFound();
             }
+            var customer = await _context.Customers.FindAsync(id);
 
-            var payMode = await _context.PayModes.FindAsync(id);
-
-
-            if (payMode != null)
+            if (customer != null)
             {
-                PayMode = payMode;
-                _context.PayModes.Remove(payMode);
+                Customer = customer;
+                _context.Customers.Remove(Customer);
                 await _context.SaveChangesAsync();
             }
 

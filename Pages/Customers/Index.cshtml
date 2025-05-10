@@ -40,9 +40,6 @@
                         @Html.DisplayFor(modelItem => item.Address)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
                         @item.Birthday?.ToString("dd/MM/yyyy"))
                     </td>
                     <td>
@@ -53,6 +50,7 @@
                     </td>
 
                     <td>
+                        <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
                     </td>
 
                 </tr>
