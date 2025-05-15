@@ -1,0 +1,4 @@
+﻿CREATE TABLE Users (
+    Email NVARCHAR(256) NOT NULL PRIMARY KEY,
+    Password NVARCHAR(256) NOT NULL
+);

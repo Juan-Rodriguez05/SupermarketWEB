@@ -2,8 +2,10 @@
 
 namespace SupermarketWEB.Models
 {
-    public class Users
+    public class User
     {
+        public int Id { get; set; }
+
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }

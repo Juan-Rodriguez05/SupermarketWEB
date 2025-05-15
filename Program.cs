@@ -1,13 +1,11 @@
-// Below is the corrected Program.cs file:
-
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SupermarketWEB.Data;
 
-// Below is the corrected Program.cs file:
 
 namespace SupermarketWEB
 {
-    internal static class ProgramHelpers
+    public class Program
     {
         public static void Main(string[] args)
         {
@@ -15,6 +13,12 @@ namespace SupermarketWEB
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+
+            builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
+            {
+                options.Cookie.Name = "MyCookieAuth";
+                options.LoginPath = "/Account/Login";
+            });
 
             builder.Services.AddDbContext<SupermarketContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("SupermarketDB"))
@@ -34,6 +38,7 @@ namespace SupermarketWEB
 
             app.UseRouting();
 
+            app.UseAuthentication(); // Debe ir antes de UseAuthorization
             app.UseAuthorization();
 
             app.MapRazorPages();
