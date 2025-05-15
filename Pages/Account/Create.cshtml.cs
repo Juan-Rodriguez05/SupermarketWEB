@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SupermarketWEB.Data;
@@ -27,7 +26,6 @@ namespace SupermarketWEB.Pages.Account
             if (!ModelState.IsValid)
                 return Page();
 
-            // Validar si el correo ya existe
             var exists = _context.Users.Any(u => u.Email == User.Email);
             if (exists)
             {
@@ -35,14 +33,7 @@ namespace SupermarketWEB.Pages.Account
                 return Page();
             }
 
-            // Hashear la contraseña
-            var hasher = new PasswordHasher<User>();
-            User.Password = hasher.HashPassword(User, User.Password);
-
-            // Agregar el usuario a la base de datos
             _context.Users.Add(User);
-
-            // Guardar cambios
             await _context.SaveChangesAsync();
 
             return RedirectToPage("Login");
