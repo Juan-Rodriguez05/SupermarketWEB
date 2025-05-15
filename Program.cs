@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SupermarketWEB.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 
 namespace SupermarketWEB
@@ -14,7 +15,7 @@ namespace SupermarketWEB
             // Add services to the container.
             builder.Services.AddRazorPages();
 
-            builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
+            builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options =>
             {
                 options.Cookie.Name = "MyCookieAuth";
                 options.LoginPath = "/Account/Login";

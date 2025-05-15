@@ -3,13 +3,25 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SupermarketWEB.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
+using SupermarketWEB.Data;
+
+
 
 namespace SupermarketWEB.Pages.Account
 {
     public class LoginModel : PageModel
     {
+        private readonly SupermarketContext _context;
+
+        public LoginModel(SupermarketContext context)
+        {
+            _context = context;
+        }
+
         [BindProperty]
-        public User User { get; set; }
+        public User User { get; set; } = new();
         public void OnGet()
         {
         }
@@ -18,22 +30,27 @@ namespace SupermarketWEB.Pages.Account
         {
             if (!ModelState.IsValid) return Page();
 
-            if (User.Email == "admin@gmail.com" && User.Password == "12345")
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == User.Email && u.Password == User.Password);
+
+            if (user != null)
             {
-            
+
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, "admin"),
-                    new Claim(ClaimTypes.Email, User.Email),
+                    new Claim(ClaimTypes.Name, user.Email),
+                    new Claim(ClaimTypes.Email, user.Email),
                 };
 
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
 
-                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
+                var claimsPrincipal = new ClaimsPrincipal(identity);
+
 
                 await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
                 return RedirectToPage("/Index");
             }
+            ModelState.AddModelError(string.Empty, "Invalid email or password.");
             return Page();
         }
     }

@@ -1,0 +1,10 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Authentication
+
+@if (User.Identity?.IsAuthenticated ?? false)
+{
+    <form method="post" class="form-inline" asp-page="/Logout" asp-page-handler="Logout">
+        <span class="navbar-text text-d ark">Hola @User.Identity?.Name!</span>
+        <button type="submit" class="nav-link btn btn-link text-dark">Cerrar Sesión</button>
+    </form>
+}
