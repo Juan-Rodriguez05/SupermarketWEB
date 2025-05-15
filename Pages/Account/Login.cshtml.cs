@@ -6,6 +6,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using SupermarketWEB.Data;
+using Microsoft.AspNetCore.Identity;
 
 
 
@@ -13,11 +14,15 @@ namespace SupermarketWEB.Pages.Account
 {
     public class LoginModel : PageModel
     {
+        private readonly ILogger<LoginModel> _logger;
         private readonly SupermarketContext _context;
 
-        public LoginModel(SupermarketContext context)
+        public LoginModel(SupermarketContext context, ILogger<LoginModel> logger)
+
         {
             _context = context;
+            _logger = logger;
+
         }
 
         [BindProperty]

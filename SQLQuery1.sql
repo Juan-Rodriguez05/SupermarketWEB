@@ -1,6 +1,4 @@
-﻿CREATE TABLE [dbo].[Categories] (
-    [Id] INT IDENTITY(1,1) NOT NULL,
-    [Name] NVARCHAR(255) NOT NULL,
-    [Description] NVARCHAR(MAX) NULL,
-    CONSTRAINT [PK_Categories] PRIMARY KEY CLUSTERED ([Id] ASC)
-);
+﻿INSERT INTO Users (Email, Password)
+VALUES 
+('admin@gmail.com', '12345'),
+('cliente1@gmail.com', '12345');
