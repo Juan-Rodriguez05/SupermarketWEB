@@ -39,7 +39,7 @@ namespace SupermarketWEB
 
             app.UseRouting();
 
-            app.UseAuthentication(); // Debe ir antes de UseAuthorization
+            app.UseAuthentication(); 
             app.UseAuthorization();
 
             app.MapRazorPages();
