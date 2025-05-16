@@ -7,7 +7,7 @@ using SupermarketWEB.Models;
 
 namespace SupermarketWEB.Pages.Customers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
         private readonly SupermarketContext _context;

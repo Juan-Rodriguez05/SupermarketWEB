@@ -45,6 +45,7 @@ namespace SupermarketWEB.Pages.Account
                 {
                     new Claim(ClaimTypes.Name, user.Email),
                     new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.Role, user.Role)
                 };
 
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");

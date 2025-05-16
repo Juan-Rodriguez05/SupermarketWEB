@@ -13,10 +13,7 @@ namespace SupermarketWEB.Models
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        [Required]
-        [RegularExpression("Admin|Usuario", ErrorMessage = "El rol debe ser 'Admin' o 'Usuario'")]
-        public string Role { get; set; }
+        public string Role { get; set; } = "Usuario";
 
     }
 }

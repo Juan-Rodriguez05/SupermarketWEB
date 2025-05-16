@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SupermarketWEB.Data;
 using SupermarketWEB.Models;
 
@@ -17,9 +18,17 @@ namespace SupermarketWEB.Pages.Account
         [BindProperty]
         public User User { get; set; } = default!;
 
+        public List<SelectListItem> RoleOptions { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "Admin", Text = "Admin" },
+            new SelectListItem { Value = "Usuario", Text = "Usuario" }
+        };
+
+
         public void OnGet()
         {
         }
+
 
         public async Task<IActionResult> OnPostAsync()
         {
